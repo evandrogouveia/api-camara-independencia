@@ -4,9 +4,9 @@ const pool = mysql.createPool({
     multipleStatements: true,
     host: '185.169.99.137',
     port: '3306',
-    user: 'ce180037_camara-nova-russas',
-    password: 'GY@%Q5goTs27',
-    database: 'ce180037_camara-nova-russas',
+    user: 'ce180037_independencia',
+    password: 'Uj9wlUCZ7%vL',
+    database: 'ce180037_independencia',
     waitForConnections: true,
     connectionLimit: 10,
     maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
@@ -649,30 +649,15 @@ function createTable(conn) {
     const sqlConfiguracoes = "CREATE TABLE IF NOT EXISTS configuracoes (\n" +
         "ID int NOT NULL AUTO_INCREMENT,\n" +
         "minutos JSON,\n" +
+        "tempoTotal varchar(50),\n" +
+        "votacaoEmBloco BOOLEAN,\n" +
+        "votacaoSecreta BOOLEAN,\n" +
         "PRIMARY KEY (ID)\n" +
         ");";
 
     conn.query(sqlConfiguracoes, function (error, results, fields) {
         if (error) return console.log(error);
         console.log('criou tabela configurações');
-    });
-
-    const novaColunaConfiguracoes = "ALTER TABLE configuracoes ADD COLUMN tempoTotal VARCHAR(50) AFTER minutos";
-    conn.query(novaColunaConfiguracoes, function (error, results, fields) {
-        if (error) return console.log(error);
-        console.log('criou nova coluna configurações');
-    });
-
-    const novaColunaConfiguracoes2 = "ALTER TABLE configuracoes ADD COLUMN votacaoEmBloco BOOLEAN AFTER tempoTotal";
-    conn.query(novaColunaConfiguracoes2, function (error, results, fields) {
-        if (error) return console.log(error);
-        console.log('criou nova coluna configurações 2');
-    });
-
-    const novaColunaConfiguracoes3 = "ALTER TABLE configuracoes ADD COLUMN votacaoSecreta BOOLEAN AFTER votacaoEmBloco";
-    conn.query(novaColunaConfiguracoes3, function (error, results, fields) {
-        if (error) return console.log(error);
-        console.log('criou nova coluna configurações 3');
         pool.end();
     });
 
