@@ -18,6 +18,14 @@ io.on('connection', (socket) => {
         io.emit('dadosPainel', dados);
     })
 
+    socket.on('dadosVotacaoBloco', (dados) => {
+        io.emit('dadosVotacaoBloco', dados);
+    });
+
+    socket.on('removeItemIdStorage', (dados) => {
+        io.emit('removeItemIdStorage', dados);
+    });
+
     socket.on('dadosInscricao', (dados) => {
         io.emit('dadosInscricao', dados);
     })
